@@ -53,17 +53,12 @@ export const useGuessLists = defineStore("guessLists", () => {
   }
 
   function submitGuess() {
-    console.log("exact: ", exactGuesses.value);
-    console.log("close: ", inexactGuesses.value);
-    console.log("others: ", allGuesses.value);
-    console.log(guesses.value.slice(0, currentGuess.value));
     if (words.includes(guesses.value[currentGuess.value])) {
       currentGuess.value += 1;
     }
   }
 
   function handleKeyup(e: KeyboardEvent | { key: string }) {
-    console.log(word.value);
     if (won.value || lost.value) {
       return;
     }

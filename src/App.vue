@@ -1,27 +1,79 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-</template>
+<script lang="ts" setup>
+import QwertyBoard from "./components/QwertyBoard.vue";
+import GuessLine from "./components/GuessLine.vue";
+import { useGuessLists } from "./stores/guessLists";
+import { onBeforeMount, onMounted, onUnmounted } from "vue";
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+const store = useGuessLists();
 
-export default defineComponent({
-  name: "App",
-  components: {
-    HelloWorld,
-  },
+onBeforeMount(() => {
+  store.init();
+});
+
+onMounted(() => {
+  window.addEventListener("keyup", store.handleKeyup);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keyup", store.handleKeyup);
 });
 </script>
 
+<template>
+  <div class="wrapper">
+    <h1 class="title">Wordle</h1>
+    <GuessLine
+      v-for="(guess, index) in store.iterableGuesses"
+      :key="index"
+      :word="store.word"
+      :guess="guess"
+      :isGuessed="index < store.currentGuess"
+    />
+    <QwertyBoard />
+    <h1 v-if="store.won">You Won!</h1>
+    <h1 v-if="store.lost">You Lost!</h1>
+    <button v-if="store.won || store.lost" @click="store.init" class="button">
+      Play Again
+    </button>
+  </div>
+</template>
+
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: rgb(89, 95, 114);
+  min-width: 100vh;
+  min-height: 100vh;
+  margin: -1.4rem -0.5rem;
+}
+
+.button {
+  font-size: 1.25rem;
+  margin: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  background-color: rgb(51, 51, 239);
+  color: whitesmoke;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-clip: text;
+  background: linear-gradient(
+    45deg,
+    rgba(3, 65, 172, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wrapper {
+  padding-top: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

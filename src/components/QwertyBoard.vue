@@ -21,11 +21,11 @@ const handleClick = (letter: string) => {
           exact: store.exactGuesses.includes(key),
           almost:
             store.inexactGuesses.includes(key) &&
-            !store.inexactGuesses.includes(key),
+            !store.exactGuesses.includes(key),
           nope:
             store.allGuesses.includes(key) &&
             !store.exactGuesses.includes(key) &&
-            store.inexactGuesses.includes(key),
+            !store.inexactGuesses.includes(key),
         }"
       >
         {{ key }}
@@ -69,7 +69,7 @@ const handleClick = (letter: string) => {
   background-color: green;
 }
 .almost {
-  background-color: yellow;
+  background-color: rgb(224, 224, 67);
 }
 .nope {
   background-color: gray;

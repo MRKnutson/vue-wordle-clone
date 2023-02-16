@@ -10,7 +10,8 @@ export const useGuessLists = defineStore("guessLists", () => {
 
   // getters
   const allGuesses = computed(() => {
-    return guesses.value.slice(0, currentGuess.value).join("").split("");
+    const arr = guesses.value.slice(0, currentGuess.value).join("").split("");
+    return arr;
   });
   const exactGuesses = computed(() => {
     return word.value.split("").filter((letter, index) => {

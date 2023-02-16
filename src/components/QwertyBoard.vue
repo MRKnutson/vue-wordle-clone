@@ -41,6 +41,7 @@ const handleClick = (letter: string) => {
 <style scoped>
 .container {
   margin-top: 0.5rem;
+  margin-bottom: -0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +80,7 @@ const handleClick = (letter: string) => {
 }
 .fn-button {
   font-size: 1rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0.5rem 0rem 0.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   background-color: aquamarine;

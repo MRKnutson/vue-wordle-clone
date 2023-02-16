@@ -48,7 +48,7 @@ onUnmounted(() => {
 
 .button {
   font-size: 1.25rem;
-  margin: 1.5rem;
+  margin: 0;
   border-radius: 0.5rem;
   padding: 0.35rem 0.9rem;
   background-color: rgb(51, 51, 239);
@@ -56,6 +56,7 @@ onUnmounted(() => {
 }
 
 .title {
+  margin-bottom: 0;
   font-size: 5rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -70,7 +71,7 @@ onUnmounted(() => {
 }
 
 .wrapper {
-  padding-top: 15rem;
+  padding-top: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

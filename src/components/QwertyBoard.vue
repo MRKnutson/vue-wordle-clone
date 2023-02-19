@@ -32,8 +32,8 @@ const handleClick = (letter: string) => {
       </button>
     </div>
     <div class="button-container">
-      <button class="fn-button">Delete</button>
-      <button class="fn-button">Submit</button>
+      <button class="fn-button" @click="handleClick('Backspace')">Delete</button>
+      <button class="fn-button" @click="handleClick('Enter')">Submit</button>
     </div>
   </div>
 </template>

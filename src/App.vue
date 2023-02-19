@@ -21,7 +21,7 @@ onUnmounted(() => {
 
 <template>
   <div class="wrapper">
-    <h1 class="title">Wordle</h1>
+    <h1 class="title">Mordle</h1>
     <GuessLine
       v-for="(guess, index) in store.iterableGuesses"
       :key="index"
@@ -31,7 +31,7 @@ onUnmounted(() => {
     />
     <QwertyBoard />
     <h1 v-if="store.won">You Won!</h1>
-    <h1 v-if="store.lost">You Lost!</h1>
+    <h1 v-if="store.lost && !store.won">The word was {{ store.word }}!</h1>
     <button v-if="store.won || store.lost" @click="store.init" class="button">
       Play Again
     </button>
@@ -57,7 +57,7 @@ onUnmounted(() => {
 
 .title {
   margin-bottom: 0;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: bold;
   text-transform: uppercase;
   background-clip: text;

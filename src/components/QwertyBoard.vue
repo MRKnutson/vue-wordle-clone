@@ -32,7 +32,9 @@ const handleClick = (letter: string) => {
       </button>
     </div>
     <div class="button-container">
-      <button class="fn-button" @click="handleClick('Backspace')">Delete</button>
+      <button class="fn-button" @click="handleClick('Backspace')">
+        Delete
+      </button>
       <button class="fn-button" @click="handleClick('Enter')">Submit</button>
     </div>
   </div>
